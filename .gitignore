@@ -1,0 +1,83 @@
+# Node.js modules
+node_modules/
+
+# Production build output (if applicable)
+dist/
+build/
+
+# Dependency lock files (choose one)
+package-lock.json
+yarn.lock
+
+# Testing frameworks and coverage reports
+coverage/
+jest/
+
+# Editor temporary or backup files
+.vscode/
+.idea/
+
+# dotenv environment file
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Fastify specific
+# Logs
+logs/*.log
+
+# Runtime data
+pids*.pid
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional: ESLint cache
+.eslintcache
+
+# Optional: Stylelint cache
+.stylelintcache
+
+# Optional: Browserslist cache
+.browserslistrc
+
+# Optional: Storybook cache
+.storybook/
+
+# Optional: Cypress cache
+.cypress/cache
+
+# Optional: npx cache
+.npm
+
+# Optional: Yarn cache
+.yarn/cache
+.yarn/unplugged
+
+# Optional: REPL history
+.node_repl_history
+
+# Optional: Output of `npm pack`
+*.tgz
+
+# Optional: Dependency metadata
+.yarn-integrity
+
+# Optional: Vue.js SFC hot reload cache
+.vuepress/dist
+
+# Optional: Nuxt.js build output
+.nuxt/dist
+
+# Optional: Gatsby cache
+.cache/
+
+# Optional: Nx specific files
+nx.json
+nx.yaml
+node_modules/@nrwl/nx/
+
+# Optional: Storybook addon options
+.storybook/main.js
