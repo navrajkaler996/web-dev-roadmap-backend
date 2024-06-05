@@ -7,9 +7,13 @@
   "scripts": {
     "start": "node src/index"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.15.0",
     "fastify": "^4.27.0"
   }
 }
