@@ -4,8 +4,6 @@ export const coursesData = [
     title: "Basics of web",
     description:
       "Before learning web development i.e. developing websites or web applications, you need to understand what is web and how it works.",
-    started: true,
-    completed: false,
 
     // totalTopics: 5,
     // topicsCompleted: 0,
@@ -16,8 +14,6 @@ export const coursesData = [
     title: "HTML",
     description:
       "HTML is the foundation of creating web pages. Imagine it as the skeleton of a website that defines the structure and content.",
-    started: false,
-    completed: false,
 
     // totalTopics: 13,
     // topicsCompleted: 0,

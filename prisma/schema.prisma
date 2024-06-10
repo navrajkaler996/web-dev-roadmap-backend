@@ -25,9 +25,6 @@ model Course {
   title       String
   description String?
 
-  started   Boolean
-  completed Boolean
-
   topics Topic[]
 
   createdAt       DateTime          @default(now())
