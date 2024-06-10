@@ -11,7 +11,7 @@ export async function getCoursesHandler(request, reply) {
         let finalTopics = [];
         for (let j = 0; j < topics.length; j++) {
           if (courses[i].id === topics[j].courseId) {
-            finalTopics.push(topics[i]);
+            finalTopics.push(topics[j]);
           }
         }
 
