@@ -30,8 +30,10 @@ model Course {
 
   topics Topic[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  CourseCompleted CourseCompleted[]
+  CourseStarted   CourseStarted[]
 }
 
 model Topic {
@@ -40,5 +42,30 @@ model Topic {
   level String
 
   courseId Int
-  course   Course? @relation(fields: [courseId], references: [id])
+  course   Course? @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  userId           Int               @id @default(autoincrement())
+  firstName        String
+  email            String            @unique
+  password         String
+  coursesStarted   CourseStarted[]
+  coursesCompleted CourseCompleted[]
+}
+
+model CourseStarted {
+  courseStartedId Int    @id @default(autoincrement())
+  userId          Int
+  courseId        Int
+  User            User?  @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  Course          Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model CourseCompleted {
+  courseCompletedId Int    @id @default(autoincrement())
+  userId            Int
+  courseId          Int
+  User              User?  @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  Course            Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }

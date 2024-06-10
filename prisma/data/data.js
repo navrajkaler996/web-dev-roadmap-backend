@@ -7,9 +7,9 @@ export const coursesData = [
     started: true,
     completed: false,
 
-    totalTopics: 5,
-    topicsCompleted: 0,
-    essentialTopics: 4,
+    // totalTopics: 5,
+    // topicsCompleted: 0,
+    // essentialTopics: 4,
   },
   {
     id: 1,
@@ -19,9 +19,9 @@ export const coursesData = [
     started: false,
     completed: false,
 
-    totalTopics: 13,
-    topicsCompleted: 0,
-    essentialTopics: 7,
+    // totalTopics: 13,
+    // topicsCompleted: 0,
+    // essentialTopics: 7,
   },
   //   {
   //     id: 2,
@@ -115,6 +115,28 @@ export const topicsData = [
   {
     name: "HTML web workers",
     level: "green",
+    courseId: 1,
+  },
+];
+
+export const userData = [
+  {
+    firstName: "Navraj",
+    email: "navrajkaler996@gmail.com",
+    password: "admin",
+  },
+];
+
+export const courseStartedData = [
+  {
+    userId: 0,
+    courseId: 0,
+  },
+];
+
+export const courseCompletedData = [
+  {
+    userId: 0,
     courseId: 1,
   },
 ];
