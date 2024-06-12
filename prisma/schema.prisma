@@ -38,8 +38,9 @@ model Topic {
   name  String
   level String
 
-  courseId Int
-  course   Course? @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseId       Int
+  course         Course?          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  TopicCompleted TopicCompleted[]
 }
 
 model User {
@@ -49,6 +50,7 @@ model User {
   password         String
   coursesStarted   CourseStarted[]
   coursesCompleted CourseCompleted[]
+  TopicCompleted   TopicCompleted[]
 }
 
 model CourseStarted {
@@ -65,4 +67,12 @@ model CourseCompleted {
   courseId          Int
   User              User?  @relation(fields: [userId], references: [userId], onDelete: Cascade)
   Course            Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model TopicCompleted {
+  topicCompletedId Int   @id @default(autoincrement())
+  userId           Int
+  topicId          Int
+  User             User? @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  Topic            Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }

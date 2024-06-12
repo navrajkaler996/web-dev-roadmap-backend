@@ -17,3 +17,32 @@ export const getUserCoursesCompleted = (userId) => {
     where: { userId },
   });
 };
+
+export const getUserTopicsCompleted = (userId) => {
+  return prisma.topicCompleted.findMany({
+    where: { userId },
+  });
+};
+
+export const updateTopicStatus = async (userId, topicId) => {
+  const isTopicCompleted = await prisma.topicCompleted.findFirst({
+    where: {
+      userId,
+      topicId,
+    },
+  });
+
+  //If isTopicCompleted is not null,
+  //that means topic is already completed
+  //and needs to be deleted
+  if (isTopicCompleted !== null) {
+    const { topicCompletedId } = isTopicCompleted;
+    return prisma.topicCompleted.delete({
+      where: {
+        topicCompletedId,
+      },
+    });
+  } else {
+    return prisma.topicCompleted.create({ data: { userId, topicId } });
+  }
+};
