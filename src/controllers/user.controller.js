@@ -6,6 +6,10 @@ import {
   updateTopicStatus,
 } from "../services/user.service.js";
 
+import jwt from "jsonwebtoken";
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
 export async function getUserByEmailHandler(request, reply) {
   try {
     const { params } = request;
@@ -61,6 +65,27 @@ export async function updateTopicsHandler(request, reply) {
     const response = await updateTopicStatus(userId, topicId);
 
     return response;
+  } catch (error) {
+    reply.status(500).send(error);
+  }
+}
+
+export async function loginHandler(request, reply) {
+  try {
+    const { email, password } = request.body;
+
+    const user = await getUserByEmail(email);
+
+    if (!user) reply.status(404).send({ message: "Wrong credentials!" });
+
+    if (user.password !== password)
+      reply.status(404).send({ message: "Wrong credentials!" });
+
+    const token = jwt.sign({ userId: user.userId }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    reply.status(200).send({ token });
   } catch (error) {
     reply.status(500).send(error);
   }

@@ -1,7 +1,9 @@
 import Fastify from "fastify";
+import fastifyCors from "@fastify/cors";
+
+//Importing routes
 import userRoutes from "./routes/user.routes.js";
 import courseRoutes from "./routes/course.route.js";
-import fastifyCors from "@fastify/cors";
 
 const fastify = Fastify({
   logger: true,
@@ -10,6 +12,8 @@ const fastify = Fastify({
 await fastify.register(fastifyCors, {
   origin: true,
 });
+
+// fastify.addHook("preHandler", verifyToken);
 
 fastify.register(userRoutes, { prefix: "/api/v1/users/" });
 fastify.register(courseRoutes, { prefix: "/api/v1/courses/" });
