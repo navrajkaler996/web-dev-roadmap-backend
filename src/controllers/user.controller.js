@@ -1,8 +1,10 @@
+import fastify from "fastify";
 import {
   getUserByEmail,
   getUserCoursesCompleted,
   getUserCoursesStarted,
   getUserTopicsCompleted,
+  signup,
   updateTopicStatus,
 } from "../services/user.service.js";
 
@@ -88,5 +90,27 @@ export async function loginHandler(request, reply) {
     reply.status(200).send({ token });
   } catch (error) {
     reply.status(500).send(error);
+  }
+}
+
+export async function signupHandler(request, reply) {
+  try {
+    const { email, firstName, password } = request.body;
+
+    const userExists = await getUserByEmail(email);
+
+    if (userExists) {
+      reply.status(400).send({ message: "Email already registered!" });
+    }
+
+    const data = { email, firstName, password };
+
+    const newUser = await signup(data);
+
+    if (newUser.userId) {
+      reply.status(200).send({ message: "Sign up successful!" });
+    }
+  } catch (error) {
+    reply.status(error.statusCode || 500).send({ message: error.message });
   }
 }

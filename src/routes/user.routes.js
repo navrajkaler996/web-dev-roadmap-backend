@@ -1,6 +1,7 @@
 import {
   getUserByEmailHandler,
   loginHandler,
+  signupHandler,
   updateTopicsHandler,
 } from "../controllers/user.controller.js";
 import verifyToken from "../middlewares/verifyToken.js";
@@ -13,6 +14,7 @@ const userRoutes = (fastify, options, done) => {
   );
   fastify.post("/update-topic", updateTopicsHandler);
   fastify.post("/login", loginHandler);
+  fastify.post("/signup", signupHandler);
 
   done();
 };

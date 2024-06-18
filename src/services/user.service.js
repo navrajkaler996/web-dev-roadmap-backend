@@ -46,3 +46,10 @@ export const updateTopicStatus = async (userId, topicId) => {
     return prisma.topicCompleted.create({ data: { userId, topicId } });
   }
 };
+
+//user sign up
+export const signup = (data) => {
+  return prisma.user.create({
+    data,
+  });
+};
