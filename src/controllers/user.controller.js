@@ -115,7 +115,10 @@ export async function signupHandler(request, reply) {
     const newUser = await signup(data);
 
     if (newUser.userId) {
-      reply.status(200).send({ message: "Sign up successful!" });
+      const token = jwt.sign({ userId: newUser.userId }, JWT_SECRET, {
+        expiresIn: "1h",
+      });
+      reply.status(200).send({ token });
     }
   } catch (error) {
     reply.status(error.statusCode || 500).send({ message: error.message });
