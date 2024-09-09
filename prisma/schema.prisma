@@ -31,6 +31,7 @@ model Course {
   updatedAt       DateTime          @updatedAt
   CourseCompleted CourseCompleted[]
   CourseStarted   CourseStarted[]
+  module          Boolean           @default(false)
 }
 
 model Topic {
@@ -41,6 +42,7 @@ model Topic {
   courseId       Int
   course         Course?          @relation(fields: [courseId], references: [id], onDelete: Cascade)
   TopicCompleted TopicCompleted[]
+  TopicLink      TopicLink[]
 }
 
 model User {
@@ -75,4 +77,12 @@ model TopicCompleted {
   topicId          Int
   User             User? @relation(fields: [userId], references: [userId], onDelete: Cascade)
   Topic            Topic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+}
+
+model TopicLink {
+  id      Int    @id @default(autoincrement())
+  topicId Int
+  title   String
+  link    String
+  Topic   Topic? @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }

@@ -3,6 +3,7 @@ import {
   courseCompletedData,
   courseStartedData,
   coursesData,
+  topicLinkData,
   topicsData,
   userData,
 } from "./data/data.js";
@@ -13,6 +14,7 @@ async function main() {
   const deleteCourses = await prisma.course.deleteMany();
 
   const deleteUsers = await prisma.user.deleteMany();
+  const deleteTopicsLink = await prisma.topicLink.deleteMany();
   const courses = await prisma.course.createMany({
     data: coursesData,
   });
@@ -38,11 +40,29 @@ async function main() {
     data: courseCompletedData,
   });
 
+  //modifying topicLinkData to add topicId
+  const firstTopic = await prisma.topic.findFirst();
+
+  console.log(firstTopic);
+
+  let modifiedTopicLinkData = topicLinkData.map((topicLink) => {
+    topicLink.topicId = firstTopic.id;
+
+    return topicLink;
+  });
+
+  console.log(modifiedTopicLinkData);
+
+  // const topicLink = await prisma.topicLink.createMany({
+  //   data: topicLinkData,
+  // });
+
   console.log({ courses });
   console.log({ topics });
   console.log({ users });
   console.log({ coursesStarted });
   console.log({ coursesCompleted });
+  // console.log({ topicLink });
 }
 
 main()
